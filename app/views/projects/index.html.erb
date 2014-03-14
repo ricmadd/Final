@@ -1,0 +1,53 @@
+<div class="page-header">
+  <h1>Existing Projects</h1>
+</div>
+
+<div class="row">
+  <% @project_list.each do |project| %>
+      <div class="col-md-3">
+
+      <h4>Project: <%=project.name %></h4>
+      <h4>Client: <%=project.client %> </h4>
+      <h4>Location: <%=project.location %> </h4>
+      <a href="/projects/<%= project.id %>/show"> <button type="submit" class="btn btn-success btn-md"> Go to <%= project.name %> </button> </a>
+      </div>
+
+  <% end %>
+</div>
+
+
+<h2>Create a new project:</h2>
+
+
+<form action="/projects/create" class="col-md-4">
+
+  <div class="form-group">
+    <label class="control-label">Project Details:</label>
+    <input name="name" type="text" class="form-control input-md" placeholder="Project Name">
+
+    <input name="manager" type="text" class="form-control input-md" placeholder="Project Manager's Name">
+
+    <input name="client" type="text" class="form-control input-md" placeholder="Project Client">
+
+    <input name="location" type="text" class="form-control input-md" placeholder="Project Location">
+
+    <input name="description" type="text" class="form-control input-md" placeholder="Brief Project Description">
+
+    <input name="contractvalue" type="text" class="form-control input-md" placeholder="Contract Value">
+
+  </div>
+
+  <button type="submit" class="btn btn-success btn-md">Create Project! </button>
+  or
+  <%= link_to "Go Back", "/" %>
+</form>
+
+
+<!-- Project Model columns: -->
+      <!-- t.string :name -->
+      <!-- t.string :manager -->
+      <!-- t.string :client -->
+      <!-- t.string :location -->
+      <!-- t.text :description -->
+      <!-- t.integer :contractvalue -->
+      <!-- t.integer :progress -->

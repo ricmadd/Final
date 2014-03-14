@@ -1,6 +1,43 @@
 WBSBuilder::Application.routes.draw do
 
-  get "/" => 'pages#welcome'
+# Homepage:
+  get '/' => 'sessions#new'
+
+# Session-related URLs
+  get '/login' => 'sessions#new'
+  get '/authenticate' => 'sessions#create'
+
+
+# User-related URLs
+
+  get "/users/new" => 'users#new'
+  get "/users/create" => 'users#create'
+  get "/users/:user_id/show" => 'users#show'
+
+
+
+# Project-related URLs
+
+  #CREATE
+  get '/projects/new' => 'projects#new'
+  get '/projects/create' => 'projects#create'
+
+  # READ
+  get '/projects' => 'projects#index'
+  get '/projects/:project_id/show' => 'projects#show'
+
+  #UPDATE
+  get '/projects/:project_id/edit' => 'projects#edit'
+  get '/projects/:project_id/update' => 'projects#update'
+
+  #DELETE
+
+  get 'projects/:project_id/delete' => 'projects#destroy'
+
+# Task-related URLs
+
+  get '/tasks/create' => 'tasks#create'
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
