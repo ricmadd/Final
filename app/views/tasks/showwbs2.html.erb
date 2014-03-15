@@ -1,0 +1,53 @@
+<div class="page-header">
+
+<% if session[:name].present? %>
+
+  <h1>Project: <%=@currentproject.name%> </h1>
+
+  <%= link_to "Delete the Task #{@currenttask.name}", "/tasks/#{@currenttask.id}/delete", :class => "btn btn-md  pull-right " %>
+
+  <%= link_to "Go Back to WBS L1 List", "/projects/#{@currentproject.id}/show", :class => "btn btn-md btn-success pull-right " %>
+
+
+  <h2>WBS L1: <%=@currenttask.name%>    </h2>
+
+</div>
+
+<h3>WBS L2:</h3>
+<div class="row">
+  <div class="col-lg-12">
+    <% if @currentwbs2_list.any? %>
+      <% @currentwbs2_list.each do |wbs2| %>
+
+        <h3> <a href="/tasks/<%=@currenttask.id%>/<%=wbs2.id%>/show"> <%=wbs2.name %> </a></h3>
+
+       <%end%>
+    <%end%>
+  </div>
+
+  <div class="row">
+    <form action="/wbs2/create/">
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <input name="name" type="text" class="form-control input-md" placeholder="Create a new WBSL2 Activity">
+          <input name = "project_id" type = "hidden" value="<%=@currentproject.id%>" >
+          <input name = "task_id" type = "hidden" value = "<%=@currenttask.id%>" >
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <button type="submit" class="btn btn-success btn-md"> Add Task </button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+<% else %>
+
+<h2>Please Sign in</h2>
+
+<% end %>

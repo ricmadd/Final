@@ -2,18 +2,19 @@ WBSBuilder::Application.routes.draw do
 
 # Homepage:
   get '/' => 'sessions#new'
+  root 'sessions#new'
 
 # Session-related URLs
   get '/login' => 'sessions#new'
+  get '/logout' => 'sessions#destroy'
   get '/authenticate' => 'sessions#create'
 
 
 # User-related URLs
 
-  get "/users/new" => 'users#new'
+  get "/users/new" => 'users#newuser'
   get "/users/create" => 'users#create'
   get "/users/:user_id/show" => 'users#show'
-
 
 
 # Project-related URLs
@@ -34,9 +35,32 @@ WBSBuilder::Application.routes.draw do
 
   get 'projects/:project_id/delete' => 'projects#destroy'
 
+
+
 # Task-related URLs
 
+#CREATE
   get '/tasks/create' => 'tasks#create'
+  get '/wbs2/create' => 'tasks#createwbs2'
+  get '/wbs2/wbs3/create' => 'tasks#createwbs3'
+
+# READ
+  get '/tasks/:task_id/show' => 'tasks#showwbs2'
+  get '/tasks/:task_id/:wbs2_id/show' => 'tasks#showwbs3'
+
+  #UPDATE
+
+
+  #DELETE
+  get 'tasks/:task_id/delete' => 'tasks#destroy'
+  get 'tasks/:task_id/:wbs2_id/delete' => 'tasks#destroywbs2'
+
+
+
+
+
+
+
 
 
 

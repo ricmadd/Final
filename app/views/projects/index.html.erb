@@ -1,20 +1,41 @@
+<% if session[:name].present? %>
+
 <div class="page-header">
   <h1>Existing Projects</h1>
 </div>
 
+
+
 <div class="row">
   <% @project_list.each do |project| %>
-      <div class="col-md-3">
+      <div class="col-md-4">
 
-      <h4>Project: <%=project.name %></h4>
-      <h4>Client: <%=project.client %> </h4>
-      <h4>Location: <%=project.location %> </h4>
-      <a href="/projects/<%= project.id %>/show"> <button type="submit" class="btn btn-success btn-md"> Go to <%= project.name %> </button> </a>
+        <h4>Project: <%=project.name %></h4>
+        <h4>PM: <%=project.manager %> </h4>
+        <h4>Client: <%=project.client %> </h4>
+        <h4>Location: <%=project.location %> </h4>
+        <h4>Description: <%=project.description %> </h4>
+        <h4>Contract Value: <%=project.contractvalue %> </h4>
+
+
+        <a href="/projects/<%= project.id %>/show"> <button type="submit" class="btn btn-success btn-md"> Go to <%= project.name %> </button> </a>
+
+
+        <% if project.location !=  "" %>
+            <% @city = project.location %>
+            <% @url = URI.escape("http://api.openweathermap.org/data/2.5/weather?q=#{@city}&units=imperial") %>
+            <% @json_data = open(@url).read %>
+            <% @data = JSON.parse(@json_data)%>
+            <% if @data["message"].present? %>
+                <p> Error:City not found. Edit the project to correct. </p>
+            <%else%>
+                <p><%= @data["weather"].first["description"] %> in <%=project.location%> </p>
+            <% end %>
+        <% end %>
       </div>
 
-  <% end %>
+    <%end%>
 </div>
-
 
 <h2>Create a new project:</h2>
 
@@ -29,7 +50,7 @@
 
     <input name="client" type="text" class="form-control input-md" placeholder="Project Client">
 
-    <input name="location" type="text" class="form-control input-md" placeholder="Project Location">
+    <input name="location" type="text" class="form-control input-md" placeholder="Project City Location (enter a valid city)">
 
     <input name="description" type="text" class="form-control input-md" placeholder="Brief Project Description">
 
@@ -42,12 +63,7 @@
   <%= link_to "Go Back", "/" %>
 </form>
 
+<% else %>
+  <h2> Please Sign In</h2>
+<% end %>
 
-<!-- Project Model columns: -->
-      <!-- t.string :name -->
-      <!-- t.string :manager -->
-      <!-- t.string :client -->
-      <!-- t.string :location -->
-      <!-- t.text :description -->
-      <!-- t.integer :contractvalue -->
-      <!-- t.integer :progress -->

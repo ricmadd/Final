@@ -1,50 +1,48 @@
 <div class="page-header">
-  <%= link_to "Delete the Project", "/projects/#{@currentproject.id}/delete", :class => "btn btn-md  pull-right " %>
+  <%= link_to "Delete #{@currentproject.name}", "/projects/#{@currentproject.id}/delete", :class => "btn btn-md  pull-right " %>
 
-  <%= link_to "Go Back", "/projects", :class => "btn btn-md btn-success pull-right " %>
+  <%= link_to "Edit #{@currentproject.name}", "/projects/#{@currentproject.id}/edit", :class => "btn btn-md  pull-right " %>
 
-  <h1>Project WBS: </h1>
+  <%= link_to "Back to Project Index", "/projects", :class => "btn btn-md btn-success pull-right " %>
+
+  <h1><%= @currentproject.name%> </h1>
 </div>
 
+<h2>WBS L1:</h2>
 <div class="row">
   <div class="col-lg-12">
-    <% @task_list.each do |task| %>
+    <% if @task_list.any? %>
 
-      <h4><%=task.name %></h4>
+      <% @task_list.each do |task| %>
 
-      <% if task == @task_list.last %>
-        <div class = "row">
-          <form action="/tasks/create/">
+        <h3> <a href="/tasks/<%=task.id%>/show"> <%=task.name %> </a></h3>
+        <a href=""></a>
 
-            <div class="col-md-6">
-              <div class="form-group">
-                <input name="name" type="text" class="form-control input-md" placeholder="WBSL2 Activity">
-                <input name = "project_id" type = "hidden" value="<%=@currentproject.id%>" >
-                <input name = "wbslevel2" type = "hidden" value = "">
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <button type="submit" class="btn btn-success btn-md"> Add Task </button>
-            </div>
-
-          </form>
-        </div>
-      <% end %>
-    <% end %>
+       <% end %>
+      <%end%>
     </div>
 </div>
 
+<div class="row"></div>
+
+  <form action="/tasks/create/">
+
+    <div class="col-md-6">
+      <div class="form-group">
+
+        <input name="name" type="text" class="form-control input-md" placeholder="Create a new WBSL1 Activity">
+
+        <input name = "project_id" type = "hidden" value="<%=@currentproject.id%>" >
+
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <button type="submit" class="btn btn-success btn-md"> Add Task </button>
+    </div>
+
+  </form>
 
 
-<!--  Task Model:
-      t.string :name
-      t.integer :project_id
-      t.integer :parenttask
-      t.integer :wbslevel2
-      t.integer :wbslevel3
-      t.integer :wbslevel4
-      t.text :description
-      t.string :responsible
-      t.integer :cost
-      t.integer :progress -->
+
+

@@ -1,0 +1,27 @@
+<div class="page-header">
+  <h1>Edit Project <%= @project.name %></h1>
+</div>
+
+<form action="/projects/<%=@project.id%>/update" class="col-md-4">
+
+  <div class="form-group">
+    <label class="control-label">Project Details:</label>
+    <input name="name" type="text" class="form-control input-md" placeholder="Project Name" required>
+
+    <input name="manager" type="text" class="form-control input-md" placeholder="Project Manager's Name" required>
+
+    <input name="client" type="text" class="form-control input-md" placeholder="Project Client" required>
+
+    <input name="location" type="text" class="form-control input-md" placeholder="Project City Location" required>
+
+    <input name="description" type="text" class="form-control input-md" placeholder="Brief Project Description" required>
+
+    <input name="contractvalue" type="text" class="form-control input-md" placeholder="Contract Value" required>
+
+  </div>
+
+  <button type="submit" class="btn btn-success btn-md">Update Project! </button>
+  or
+  <%= link_to "Go Back", "/" %>
+</form>
+

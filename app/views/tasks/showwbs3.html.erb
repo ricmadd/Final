@@ -1,0 +1,45 @@
+<div class="page-header">
+  <h1>Project: <%=@currentproject.name%> </h1>
+  <h2>WBS L1: <%=@currenttask.name%>    </h2>
+
+  <%= link_to "Delete #{@currentwbs2.name}", "/tasks/#{@currenttask.id}/#{@currentwbs2.id}/delete", :class => "btn btn-md  pull-right " %>
+
+  <%= link_to "Go Back to WBS L2 List", "/tasks/#{@currenttask.id}/show", :class => "btn btn-md btn-success pull-right " %>
+
+
+  <h2>WBS L2: <%=@currentwbs2.name%>    </h2>
+
+</div>
+
+  <%if @currentwbs3 != nil %>
+    <h3>Current pending task: </h3>
+     <li><h3> <%= @currentwbs3.name%> </h3></li>
+      <li><h4> <%= @currentwbs3.description%> </h4></li>
+  <%end%>
+
+
+  <form action="/wbs2/wbs3/create">
+    <div>
+      <div class="col-md-6">
+        <div class="form-group">
+
+
+        <label> <h3> Update the pending WBS3 Task Here: </h3> </label>
+
+          <input name="name" type="text" class="form-control input-md" placeholder="Update the name here">
+
+          <input name="description" type="text" class="form-control input-md" placeholder="Update details here">
+
+
+          <input name = "project_id" type = "hidden" value="<%=@currentproject.id%>" >
+          <input name = "task_id" type = "hidden" value = "<%=@currenttask.id%>" >
+          <input name = "wbs2_id" type = "hidden" value = "<%=@currentwbs2.id%>" >
+
+        </div>
+      </div>
+    </div>
+      <div class="row"></div>
+      <button type="submit" class="btn btn-success btn-md"> Update current task </button>
+
+  </form>
+
