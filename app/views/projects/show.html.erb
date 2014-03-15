@@ -16,13 +16,12 @@
       <% @task_list.each do |task| %>
 
         <h3> <a href="/tasks/<%=task.id%>/show"> <%=task.name %> </a></h3>
-        <a href=""></a>
 
-       <% end %>
-      <%end%>
-    </div>
-</div>
+      <% end %>
+    <%end%>
+  </div>
 
+<div class="row">
 <div class="row"></div>
 
   <form action="/tasks/create/">
@@ -43,6 +42,17 @@
 
   </form>
 
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <button type="submit" class="btn btn-success btn-md"> Add Task </button>
+    </div>
+
+  </form>
 
 
+</div>
+
+</div>
 

@@ -2,6 +2,7 @@
   <h1>Edit Project <%= @project.name %></h1>
 </div>
 
+<div class="row">
 <form action="/projects/<%=@project.id%>/update" class="col-md-4">
 
   <div class="form-group">
@@ -21,7 +22,12 @@
   </div>
 
   <button type="submit" class="btn btn-success btn-md">Update Project! </button>
-  or
-  <%= link_to "Go Back", "/" %>
 </form>
+</div>
+
+<div class="row">
+  <div class="col-md-2">
+    <h4> or <%= link_to "Go Back", "/projects" %> </h4>
+  </div>
+</div>
 

@@ -25,24 +25,25 @@
     <%end%>
   </div>
 
-  <div class="row">
-    <form action="/wbs2/create/">
+<div class="row">
+  <form action="/wbs2/create/">
 
-      <div class="col-md-6">
-        <div class="form-group">
-          <input name="name" type="text" class="form-control input-md" placeholder="Create a new WBSL2 Activity">
-          <input name = "project_id" type = "hidden" value="<%=@currentproject.id%>" >
-          <input name = "task_id" type = "hidden" value = "<%=@currenttask.id%>" >
-        </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <input name="name" type="text" class="form-control input-md" placeholder="Create a new WBSL2 Activity">
+        <input name = "project_id" type = "hidden" value="<%=@currentproject.id%>" >
+        <input name = "task_id" type = "hidden" value = "<%=@currenttask.id%>" >
       </div>
+    </div>
 
-      <div class="col-md-6">
-        <button type="submit" class="btn btn-success btn-md"> Add Task </button>
-      </div>
+    <div class="col-md-6">
+      <button type="submit" class="btn btn-success btn-md"> Add Task </button>
+    </div>
 
-    </form>
+  </form>
 
-  </div>
+
+</div>
 
 </div>
 
@@ -51,3 +52,4 @@
 <h2>Please Sign in</h2>
 
 <% end %>
+
